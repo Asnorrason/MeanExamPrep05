@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="clientApp">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatRoulette</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script type="text/javascript" src="socket.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script type="text/javascript" src="clientApp.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body ng-controller="chatController as main">
+<div class="container">
+    <h1>WhaleCum to ChatRoulette</h1>
+    <p>{{main.tester}}</p>
+    <div class="col-md-8">
+        <form ng-submit="main.sendMessage()">
+            <input type="text" placeholder="Insert message" ng-model="main.msg"/>
+            <button type="submit" value="Send">Send</button>
+        </form>
+
+        <ul class="list-unstyled" ng-repeat="message in main.messageList">
+            <li>
+                Message from: {{message.username}} {{message.timestamp}}
+                <ul class="list-unstyled">
+                    <li>{{message.msg}}</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <form ng-submit="main.changeUsername()">
+            <input type="text" placeholder="Insert new name" ng-model="main.newUsername">
+            <button type="submit" value="Send">Change Username</button>
+        </form>
+        <ul ng-repeat="user in main.userList">
+            <li>{{user}}</li>
+        </ul>
+    </div>
+</div>
+
+
+</body>
+</html>
